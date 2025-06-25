@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2ufknhy4cojt"]
+
+[ext_resource type="Script" uid="uid://buflyhn3xbjcp" path="res://Scripts/KillArea.gd" id="1_fws48"]
+
+[node name="KillArea" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_fws48")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.8
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
