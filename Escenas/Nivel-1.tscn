@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://dnhjx3f2doppu"]
 
-[ext_resource type="Texture2D" uid="uid://bu7axp67rarwh" path="res://Assets/sprites/world_tileset.png" id="1_hhvec"]
-[ext_resource type="PackedScene" uid="uid://cerj54mawoq41" path="res://Escenas/Protagonista.tscn" id="1_jm1s4"]
-[ext_resource type="PackedScene" uid="uid://urojx8vuvrk7" path="res://Escenas/Plataforma.tscn" id="3_g42f7"]
-[ext_resource type="PackedScene" uid="uid://b2ufknhy4cojt" path="res://Escenas/KillArea.tscn" id="4_5webx"]
-[ext_resource type="PackedScene" uid="uid://diyrixpjlnqon" path="res://Escenas/Slime.tscn" id="5_qql2a"]
+[ext_resource type="Texture2D" uid="uid://bu7axp67rarwh" path="res://Assets/sprites/Mapa/world_tileset.png" id="1_hhvec"]
+[ext_resource type="PackedScene" uid="uid://cerj54mawoq41" path="res://Escenas/Personajes/Protagonista.tscn" id="1_jm1s4"]
+[ext_resource type="PackedScene" uid="uid://urojx8vuvrk7" path="res://Escenas/Elementos/Plataforma.tscn" id="3_g42f7"]
+[ext_resource type="PackedScene" uid="uid://b2ufknhy4cojt" path="res://Escenas/Elementos/KillArea.tscn" id="4_5webx"]
+[ext_resource type="PackedScene" uid="uid://diyrixpjlnqon" path="res://Escenas/Personajes/Slime.tscn" id="5_qql2a"]
 [ext_resource type="Script" uid="uid://bfhbqecknae2t" path="res://Scripts/game_manager.gd" id="6_f5rmg"]
-[ext_resource type="PackedScene" uid="uid://c6mlqltybis6q" path="res://Escenas/memoria.tscn" id="7_p7gn5"]
+[ext_resource type="PackedScene" uid="uid://c6mlqltybis6q" path="res://Escenas/Elementos/memoria.tscn" id="7_p7gn5"]
 
 [sub_resource type="GDScript" id="GDScript_y32ns"]
 script/source = "extends Node
@@ -182,6 +182,7 @@ physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_g42f7")
 
 [node name="Juego Base" type="Node2D"]
+position = Vector2(1, 0)
 script = SubResource("GDScript_y32ns")
 
 [node name="KillArea" parent="." instance=ExtResource("4_5webx")]

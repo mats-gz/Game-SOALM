@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://c6mlqltybis6q"]
+
+[ext_resource type="Script" uid="uid://bdkxqhg4gkm2g" path="res://Scripts/Memoria.gd" id="1_phyx3"]
+[ext_resource type="Texture2D" uid="uid://chiwy2a8xflot" path="res://Assets/sprites/Mapa/coin.png" id="1_vyjo5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_per4h"]
+atlas = ExtResource("1_vyjo5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8wyy"]
+atlas = ExtResource("1_vyjo5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7dmb"]
+atlas = ExtResource("1_vyjo5")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8iyk"]
+atlas = ExtResource("1_vyjo5")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiyk3"]
+atlas = ExtResource("1_vyjo5")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsh0q"]
+atlas = ExtResource("1_vyjo5")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sqcp6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_per4h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8wyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7dmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8iyk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiyk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsh0q")
+}],
+"loop": true,
+"name": &"Memoria Animación",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dxh3d"]
+radius = 5.0
+
+[node name="Memoria" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_phyx3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sqcp6")
+animation = &"Memoria Animación"
+autoplay = "Memoria Animación"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dxh3d")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
