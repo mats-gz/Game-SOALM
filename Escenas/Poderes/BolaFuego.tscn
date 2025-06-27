@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcmdhahbnu4yn"]
+
+[ext_resource type="Texture2D" uid="uid://3cmuglmgncwy" path="res://Assets/sprites/Poderes/Fuego.png" id="1_sawoy"]
+[ext_resource type="Script" uid="uid://bayutqlhls211" path="res://Scripts/bola_fuego.gd" id="1_ujb1y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ujb1y"]
+atlas = ExtResource("1_sawoy")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb7sd"]
+atlas = ExtResource("1_sawoy")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_db4s3"]
+atlas = ExtResource("1_sawoy")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xecas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ujb1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gb7sd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_db4s3")
+}],
+"loop": true,
+"name": &"LanzarBola",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6da2"]
+radius = 4.0
+
+[node name="BolaFuego" type="Node2D"]
+script = ExtResource("1_ujb1y")
+velocidad = 200
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, -2.5)
+scale = Vector2(0.09, 0.09)
+sprite_frames = SubResource("SpriteFrames_xecas")
+animation = &"LanzarBola"
+autoplay = "LanzarBola"
+frame_progress = 0.431448
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_m6da2")

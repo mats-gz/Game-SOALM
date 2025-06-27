@@ -14,6 +14,10 @@ config/name="Shadow Of A Lost Mage"
 run/main_scene="uid://dnhjx3f2doppu"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[global_group]
+
+Enemigos=""
+
 [input]
 
 salto={

@@ -16,8 +16,6 @@ func _ready():
 	# esto es un comentario
 "
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5webx"]
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g42f7"]
 texture = ExtResource("1_hhvec")
 0:0/0 = 0
@@ -181,15 +179,11 @@ texture = ExtResource("1_hhvec")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_g42f7")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5webx"]
+
 [node name="Juego Base" type="Node2D"]
 position = Vector2(1, 0)
 script = SubResource("GDScript_y32ns")
-
-[node name="KillArea" parent="." instance=ExtResource("4_5webx")]
-position = Vector2(-328, 92)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
-shape = SubResource("WorldBoundaryShape2D_5webx")
 
 [node name="Personajes" type="Node" parent="."]
 
@@ -216,6 +210,12 @@ layer_0/tile_data = PackedInt32Array(65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, -65
 
 [node name="Plataforma" parent="Mapa" instance=ExtResource("3_g42f7")]
 position = Vector2(291, -100)
+
+[node name="KillArea" parent="Mapa" instance=ExtResource("4_5webx")]
+position = Vector2(-327, 92)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mapa/KillArea"]
+shape = SubResource("WorldBoundaryShape2D_5webx")
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true

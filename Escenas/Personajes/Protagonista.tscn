@@ -177,12 +177,14 @@ z_index = 5
 collision_layer = 2
 script = ExtResource("1_ti2e3")
 
+[node name="PosDisparo" type="Marker2D" parent="."]
+position = Vector2(7, -7)
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_fj705")
-animation = &"SALTO - Prota"
+animation = &"CORRER - Prota"
 autoplay = "IDLE - Prota"
-frame_progress = 0.80404
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)

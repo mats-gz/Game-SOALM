@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://diyrixpjlnqon"]
+[gd_scene load_steps=11 format=3 uid="uid://diyrixpjlnqon"]
 
 [ext_resource type="Script" uid="uid://dnfk8cil6n2v5" path="res://Scripts/Slime.gd" id="1_jcdca"]
 [ext_resource type="Texture2D" uid="uid://b7ye0ahm7kq4n" path="res://Assets/sprites/Enemigos/slime_green.png" id="2_rhsbl"]
 [ext_resource type="PackedScene" uid="uid://b2ufknhy4cojt" path="res://Escenas/Elementos/KillArea.tscn" id="3_c1l3d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5j3ch"]
+size = Vector2(10, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n888t"]
 atlas = ExtResource("2_rhsbl")
@@ -43,10 +46,14 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_47uu8"]
 size = Vector2(10, 13.5)
 
-[node name="Slime" type="Node2D"]
+[node name="Slime" type="CharacterBody2D" groups=["Enemigos"]]
 script = ExtResource("1_jcdca")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_5j3ch")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemigos"]]
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_a5s1f")
 animation = &"Enemigo Idle"
@@ -57,7 +64,7 @@ flip_h = true
 
 [node name="KillArea" parent="." groups=["Enemigos"] instance=ExtResource("3_c1l3d")]
 position = Vector2(-10.3868, 5.08774)
-collision_layer = 5
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillArea"]
 position = Vector2(10.3868, -4.83774)
