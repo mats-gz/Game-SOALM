@@ -47,8 +47,8 @@ animation = &"LanzarBola"
 autoplay = "LanzarBola"
 frame_progress = 0.431448
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="HitboxBola" type="Area2D" parent="."]
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxBola"]
 shape = SubResource("CircleShape2D_m6da2")

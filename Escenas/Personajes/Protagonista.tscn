@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cerj54mawoq41"]
+[gd_scene load_steps=31 format=3 uid="uid://cerj54mawoq41"]
 
 [ext_resource type="Texture2D" uid="uid://bs8xqevj1tofw" path="res://Assets/sprites/Protagonista/knight.png" id="1_0mpoq"]
 [ext_resource type="Script" uid="uid://doe77ytb0yg8v" path="res://Scripts/Protagonista.gd" id="1_ti2e3"]
@@ -87,6 +87,22 @@ region = Rect2(96, 0, 32, 32)
 atlas = ExtResource("1_0mpoq")
 region = Rect2(64, 160, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iovrk"]
+atlas = ExtResource("1_0mpoq")
+region = Rect2(0, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3ash"]
+atlas = ExtResource("1_0mpoq")
+region = Rect2(32, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhgfn"]
+atlas = ExtResource("1_0mpoq")
+region = Rect2(64, 192, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1cac"]
+atlas = ExtResource("1_0mpoq")
+region = Rect2(96, 192, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_fj705"]
 animations = [{
 "frames": [{
@@ -166,13 +182,33 @@ animations = [{
 "loop": true,
 "name": &"SALTO - Prota",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iovrk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3ash")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhgfn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1cac")
+}],
+"loop": true,
+"name": &"lastimado",
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4j12b"]
 radius = 4.0
 height = 14.0
 
-[node name="Protagonista" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_iovrk"]
+radius = 9.0
+
+[node name="Protagonista" type="CharacterBody2D" groups=["Protagonista"]]
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_ti2e3")
@@ -183,9 +219,23 @@ position = Vector2(7, -7)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_fj705")
-animation = &"CORRER - Prota"
+animation = &"lastimado"
 autoplay = "IDLE - Prota"
+frame_progress = 0.758788
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_4j12b")
+
+[node name="PlayerHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_iovrk")
+
+[node name="EstadoLastimado" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="EstadoLastimado" to="." method="_on_estado_lastimado_timeout"]
