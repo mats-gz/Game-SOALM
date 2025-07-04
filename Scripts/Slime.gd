@@ -5,19 +5,18 @@ var direc = 1
 var jugador_en_hitbox = false
 var puede_atacar = true
 var ref_jugador = null
-#region Variables externas declaradas.
+var vida = 3  # Vida o cantidad de impactos que puede recibir
+
 @onready var ray_cast_der: RayCast2D = $RayCastDer
 @onready var ray_cast_izq: RayCast2D = $RayCastIzq
 @onready var animacion_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var game_manager: Node = %GameManager
-@onready var protagonista: CharacterBody2D = $"."
-#endregion
+@onready var tile_map: TileMap = $Mapa/TileMap
 
+func _ready():
+	add_to_group("enemigo")  # IMPORTANTE para que la bola detecte este nodo como enemigo
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-#region Direccion de movimiento del Slime
-
 	if ray_cast_der.is_colliding():
 		direc = -1
 		animacion_sprite.flip_h = true
@@ -26,10 +25,7 @@ func _process(delta):
 		animacion_sprite.flip_h = false
 		
 	position.x += delta * vel * direc
-	
-#endregion
 
-#Si el enemigo entra al area para atacar
 func _on_enemy_hitbox_body_entered(body):
 	if body.has_method("Protagonista"):
 		jugador_en_hitbox = true
@@ -41,14 +37,12 @@ func _on_enemy_hitbox_body_entered(body):
 			body.recibir_daño(10)
 			$AtaqueCooldown.start()
 
-#Se activa una vez el protagonista salga de la hitbox, para continuar su estado normal
 func _on_enemy_hitbox_body_exited(body):
 	if body.has_method("Protagonista"):
 		jugador_en_hitbox = false
 		animacion_sprite.play("idle")
 		vel = 40
 
-#Se activa una vez el timer de 0.6s llegue al final
 func _on_ataque_cooldown_timeout():
 	puede_atacar = true
 	if jugador_en_hitbox == true:
@@ -57,8 +51,8 @@ func _on_ataque_cooldown_timeout():
 		animacion_sprite.play("idle")
 		vel = 40
 
-#region Declarar Enemigo
-#Función para declarar enemigos.
-func Enemigo():
-	pass
-#endregion
+func recibir_daño(cantidad):
+	vida -= 1  # O también vida -= cantidad si querés usar daño variable
+	print("Enemigo recibió ", cantidad, " de daño. Vida restante: ", vida)
+	if vida <= 0:
+		queue_free()  # Destruye el enemigo al recibir 3 impactos

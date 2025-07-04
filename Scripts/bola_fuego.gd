@@ -7,8 +7,13 @@ var direccion := Vector2.RIGHT
 func _process(delta):
 	position += direccion * velocidad * delta
 	
-		#Dar vuelta el sprite
 	if direccion == Vector2.RIGHT:
 		animated_sprite_2d.flip_h = false
-	elif direccion != Vector2.RIGHT:
+	else:
 		animated_sprite_2d.flip_h = true
+
+func _on_hitbox_bola_body_entered(body):
+	if body.is_in_group("enemigo"):
+		if body.has_method("recibir_daño"):
+			body.recibir_daño(3)
+		queue_free()

@@ -37,7 +37,6 @@ radius = 4.0
 
 [node name="BolaFuego" type="Node2D"]
 script = ExtResource("1_ujb1y")
-velocidad = 200
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-1, -2.5)
@@ -48,7 +47,10 @@ autoplay = "LanzarBola"
 frame_progress = 0.431448
 
 [node name="HitboxBola" type="Area2D" parent="."]
-collision_mask = 4
+collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxBola"]
+physics_interpolation_mode = 1
 shape = SubResource("CircleShape2D_m6da2")
+
+[connection signal="body_entered" from="HitboxBola" to="." method="_on_hitbox_bola_body_entered"]
