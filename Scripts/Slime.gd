@@ -5,13 +5,15 @@ var direc = 1
 var jugador_en_hitbox = false
 var puede_atacar = true
 var ref_jugador = null
+var lastimado = false
 var vida = 3  # Vida o cantidad de impactos que puede recibir
 
 @onready var ray_cast_der: RayCast2D = $RayCastDer
 @onready var ray_cast_izq: RayCast2D = $RayCastIzq
 @onready var animacion_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var game_manager: Node = %GameManager
-@onready var tile_map: TileMap = $Mapa/TileMap
+@onready var enemigo_lastimado: Timer = $EnemigoLastimado
+
 
 func _ready():
 	add_to_group("enemigo")  # IMPORTANTE para que la bola detecte este nodo como enemigo
@@ -52,7 +54,17 @@ func _on_ataque_cooldown_timeout():
 		vel = 40
 
 func recibir_daño(cantidad):
+	vel = 0
+	animacion_sprite.play("lastimado")
 	vida -= 1  # O también vida -= cantidad si querés usar daño variable
 	print("Enemigo recibió ", cantidad, " de daño. Vida restante: ", vida)
+	enemigo_lastimado.start()
 	if vida <= 0:
 		queue_free()  # Destruye el enemigo al recibir 3 impactos
+
+#Timer activado una vez el enemigo es lastimado para que se restauren las animaciones originales
+func _on_enemigo_lastimado_timeout():
+	# Restaurar estado normal
+	print(3)
+	animacion_sprite.play("idle")
+	vel = 40
