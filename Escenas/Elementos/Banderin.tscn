@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwyg5r7r7v87n"]
+
+[ext_resource type="Texture2D" uid="uid://btkfh50k4dvkv" path="res://Assets/sprites/Mapa/pixil-frame-0.png" id="1_7koou"]
+[ext_resource type="Script" uid="uid://cid1mdggjitly" path="res://Scripts/banderin.gd" id="1_dr244"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr244"]
+atlas = ExtResource("1_7koou")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s42yh"]
+atlas = ExtResource("1_7koou")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75vje"]
+atlas = ExtResource("1_7koou")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjudm"]
+atlas = ExtResource("1_7koou")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r63ba"]
+atlas = ExtResource("1_7koou")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yx0il"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr244")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s42yh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75vje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjudm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r63ba")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yrlu0"]
+radius = 12.0
+height = 24.0
+
+[node name="Banderin" type="Area2D"]
+collision_mask = 3
+script = ExtResource("1_dr244")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(18.5, -15.5)
+scale = Vector2(0.616667, 0.55)
+sprite_frames = SubResource("SpriteFrames_yx0il")
+animation = &"Idle"
+frame_progress = 0.099318
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15, -12)
+shape = SubResource("CapsuleShape2D_yrlu0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

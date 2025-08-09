@@ -1,7 +1,8 @@
 extends Node
 
-var Memoria = 0
+var Moneda = 0
 var Vidas = 3
+@onready var puntaje: Label = $"../Personajes/Protagonista/Camera2D/Puntos/Panel/Puntaje"
 
 func perder_vida():
 	Vidas -= 1
@@ -10,6 +11,8 @@ func perder_vida():
 		get_tree().reload_current_scene()
 
 
-func add_memoria():
-	Memoria += 1
-	print("Cantidad de Memoria: ", Memoria)
+func add_monedas():
+	Moneda += 1
+	print("Cantidad de Monedas: ", Moneda)
+	puntaje.text = str(Moneda) + " Puntos"
+	

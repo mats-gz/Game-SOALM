@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmel24phx1n1n"]
+
+[ext_resource type="Script" uid="uid://cg1to204k65ge" path="res://Scripts/ganaste_menu.gd" id="1_alpr6"]
+[ext_resource type="Texture2D" uid="uid://c7o1i67b1t8l3" path="res://Assets/sprites/Mapa/ChatGPT Image 8 ago 2025, 02_40_02 p.m..png" id="1_cwbvg"]
+[ext_resource type="FontFile" uid="uid://b1b4kuyvqbctl" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_alpr6"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_alpr6")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cwbvg")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -229.5
+offset_top = -106.0
+offset_right = 229.5
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Ganaste" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alpr6")
+theme_override_font_sizes/font_size = 54
+text = "¡GANASTE!"
+horizontal_alignment = 1
+
+[node name="Puntos" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alpr6")
+theme_override_font_sizes/font_size = 34
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -179.5
+offset_top = 49.0
+offset_right = 179.5
+offset_bottom = 123.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JugarDevuelta" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_alpr6")
+theme_override_font_sizes/font_size = 26
+text = "JUEGA DEVUELTA"
+icon_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer2/JugarDevuelta" to="." method="_on_jugar_devuelta_pressed"]

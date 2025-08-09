@@ -25,6 +25,7 @@ func _input(event):
 	#region Disparo con Q / Ataq. Básico
 	if event.is_action_pressed("primer_ataque"):
 		var bola = ataque_basico.instantiate()
+		bola.z_index = 10
 		bola.position = pos_disparo.global_position
 		bola.direccion = Vector2.LEFT if animated_sprite.flip_h else Vector2.RIGHT
 		get_tree().current_scene.add_child(bola)

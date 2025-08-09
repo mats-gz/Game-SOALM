@@ -205,8 +205,9 @@ animations = [{
 radius = 4.0
 height = 14.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iovrk"]
-radius = 9.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iovrk"]
+radius = 7.0
+height = 14.0
 
 [node name="Protagonista" type="CharacterBody2D" groups=["Protagonista"]]
 z_index = 5
@@ -228,10 +229,11 @@ position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_4j12b")
 
 [node name="PlayerHitbox" type="Area2D" parent="."]
+position = Vector2(0, -2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
-position = Vector2(0, -8)
-shape = SubResource("CircleShape2D_iovrk")
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_iovrk")
 
 [node name="EstadoLastimado" type="Timer" parent="."]
 wait_time = 0.9

@@ -14,6 +14,14 @@ config/name="Shadow Of A Lost Mage"
 run/main_scene="uid://dk8nt7s8hkp6t"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[autoload]
+
+GameManager="*res://Scripts/game_manager.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
 [global_group]
 
 Protagonista=""
