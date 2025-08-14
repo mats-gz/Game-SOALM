@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dnhjx3f2doppu"]
+[gd_scene load_steps=22 format=4 uid="uid://dnhjx3f2doppu"]
 
 [ext_resource type="Texture2D" uid="uid://bu7axp67rarwh" path="res://Assets/sprites/Mapa/world_tileset.png" id="1_hhvec"]
 [ext_resource type="PackedScene" uid="uid://cerj54mawoq41" path="res://Escenas/Personajes/Protagonista.tscn" id="1_jm1s4"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bpceq0hr6rkbe" path="res://Assets/sprites/Mapa/corazon_entero.png" id="6_vqj8r"]
 [ext_resource type="Script" uid="uid://br8x6jvlpjib5" path="res://Scripts/panel.gd" id="9_fb4di"]
 [ext_resource type="FontFile" uid="uid://b1b4kuyvqbctl" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="9_u2ka5"]
+[ext_resource type="PackedScene" uid="uid://qidoswpqjrbn" path="res://Escenas/Hongo.tscn" id="12_tttev"]
 
 [sub_resource type="GDScript" id="GDScript_y32ns"]
 script/source = "extends Node
@@ -476,6 +477,15 @@ position = Vector2(549, 10)
 
 [node name="Slime" parent="Personajes/Enemigos" instance=ExtResource("5_qql2a")]
 position = Vector2(352, 9)
+
+[node name="Hongo" parent="Personajes/Enemigos" instance=ExtResource("12_tttev")]
+position = Vector2(5154, -80)
+
+[node name="Hongo2" parent="Personajes/Enemigos" instance=ExtResource("12_tttev")]
+position = Vector2(4866, -80)
+
+[node name="Hongo3" parent="Personajes/Enemigos" instance=ExtResource("12_tttev")]
+position = Vector2(-126, 0)
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
